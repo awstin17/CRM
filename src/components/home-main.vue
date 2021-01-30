@@ -1,7 +1,7 @@
 <template>
   <v-container class="home-main__container">
     <v-row class="text-center">
-      <v-col cols="10" offset="1">
+      <v-col cols="12">
         <h2 class="display-2 home-main__title">Contacts</h2>
         <!-- <v-img
           :src="require('../assets/logo.svg')"
@@ -10,6 +10,7 @@
           height="200"
         /> -->
         <ContactActions></ContactActions>
+        <ContactTable></ContactTable>
       </v-col>
 
       <!-- <v-col class="mb-4">
@@ -94,12 +95,14 @@
 </template>
 
 <script>
-import ContactActions from '@/components/contact-manager/contact-actions/index.vue'
+import ContactActions from '@/components/contact-manager/contact-table-actions/index.vue'
+import ContactTable from '@/components/contact-manager/contact-table/index.vue'
 
 export default {
   name: 'Home Main',
   components: {
     ContactActions,
+    ContactTable,
   },
 }
 </script>
