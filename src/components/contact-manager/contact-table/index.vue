@@ -9,7 +9,17 @@
     class="elevation-1"
     height=400
     fixed-header
+    :search="search"
   >
+    <template v-slot:top>
+      <v-text-field
+        v-model="search"
+        label="Search Contacts"
+        class="mx-4"
+        clearable
+        prepend-icon="mdi-magnify"
+      ></v-text-field>
+    </template>
   </v-data-table>
 </template>
 
@@ -19,6 +29,7 @@ export default {
     return {
       singleSelect: false,
       selected: [],
+      search: '',
       headers: [
         {
           text: 'Name',
