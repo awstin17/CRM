@@ -3,7 +3,7 @@
     <div class="contact-table-actions__button-container">
       <div class="contact-table-actions__button-container-left">
         <v-dialog
-          v-model="dialog"
+          v-model="editDialog"
           width="500"
         >
           <template v-slot:activator="{ on, attrs }">
@@ -12,7 +12,8 @@
               v-bind="attrs"
               v-on="on"
               :disabled="selected.length != 1"
-              class="contact-table-actions__button">
+              class="contact-table-actions__button"
+              @click="prepopulateEditFields">
               <v-icon left dark>
                 mdi-pencil
               </v-icon>
@@ -25,9 +26,27 @@
               Edit
             </v-card-title>
 
-            <v-card-text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            </v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="newName"
+                    label="Full Name*"
+                    required
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="newEmail"
+                    label="Email*"
+                    required
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="newAddress"
+                    label="Address*"
+                    required
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
 
             <v-divider></v-divider>
 
@@ -36,14 +55,14 @@
               <v-btn
                 color="primary"
                 text
-                @click="dialog = false"
+                @click="editDialog = false"
               >
                 Cancel
               </v-btn>
               <v-btn
                 color="primary"
                 text
-                @click="dialog = false"
+                @click="editContact"
               >
                 Save
               </v-btn>
@@ -173,12 +192,15 @@ export default {
   name: 'Contact Actions',
   data() {
     return {
-      dialog: false,
+      editDialog: false,
       deleteDialog: false,
       addDialog: false,
       fullName: '',
       email: '',
       address: '',
+      newName: '',
+      newEmail: '',
+      newAddress: '',
     }
   },
   computed: {
@@ -200,6 +222,20 @@ export default {
       this.$store.commit('addContact', newContact)
       this.addDialog = false
       this.clearAddForm()
+    },
+    prepopulateEditFields() {
+      this.newName = this.selected[0].name
+      this.newEmail = this.selected[0].email
+      this.newAddress = this.selected[0].address
+    },
+    editContact() {
+      const newContact = {
+        name: this.newName,
+        email: this.newEmail,
+        address: this.newAddress,
+      }
+      this.$store.commit('editContact', newContact)
+      this.editDialog = false
     },
     clearAddForm() {
       this.fullName = ''

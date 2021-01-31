@@ -10,8 +10,8 @@ export default new Vuex.Store({
     selected: [],
   },
   mutations: {
-    getContacts(state, data) {
-      state.contacts = data
+    getContacts(state, contactList) {
+      state.contacts = contactList
     },
     updateSelected(state, selected) {
       state.selected = selected
@@ -21,10 +21,19 @@ export default new Vuex.Store({
         const index = state.contacts.indexOf(contact)
         state.contacts.splice(index, 1)
       })
+      state.selected = []
     },
     addContact(state, newContact) {
       state.contacts.push(newContact)
-      console.log(state, newContact)
+    },
+    editContact(state, newContact) {
+      const index = state.contacts.indexOf(state.selected[0])
+      state.contacts = [
+        ...state.contacts.slice(0, index),
+        newContact,
+        ...state.contacts.slice(index + 1),
+      ]
+      state.selected = []
     },
   },
   actions: {
