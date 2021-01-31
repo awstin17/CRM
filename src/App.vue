@@ -57,5 +57,8 @@ export default {
   data: () => ({
     //
   }),
+  created() {
+    this.$store.dispatch('getContacts')
+  },
 }
 </script>
