@@ -96,7 +96,7 @@ export default {
         address: this.newAddress,
       }
       this.$store.commit('editContact', newContact)
-      this.editDialog = false
+      this.dialogOpen = false
     },
   },
 }
