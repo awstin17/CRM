@@ -7,7 +7,12 @@
           width="500"
         >
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="secondary" v-bind="attrs" v-on="on" class="contact-table-actions__button">
+            <v-btn
+              color="secondary"
+              v-bind="attrs"
+              v-on="on"
+              :disabled="selected.length != 1"
+              class="contact-table-actions__button">
               <v-icon left dark>
                 mdi-pencil
               </v-icon>
@@ -46,11 +51,17 @@
           </v-card>
         </v-dialog>
         <v-dialog
-          v-model="dialog2"
+          v-model="deleteDialog"
           width="500"
         >
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="secondary" v-bind="attrs" v-on="on" class="contact-table-actions__button">
+            <v-btn
+              color="secondary"
+              v-bind="attrs"
+              v-on="on"
+              :disabled="selected.length === 0"
+              class="contact-table-actions__button"
+              >
               <v-icon left dark>
                 mdi-delete
               </v-icon>
@@ -74,14 +85,14 @@
               <v-btn
                 color="primary"
                 text
-                @click="dialog2 = false"
+                @click="deleteDialog = false"
               >
                 Cancel
               </v-btn>
               <v-btn
                 color="primary"
                 text
-                @click="dialog2 = false"
+                @click="deleteContacts"
               >
                 Yes, Delete
               </v-btn>
@@ -144,9 +155,20 @@ export default {
   data() {
     return {
       dialog: false,
-      dialog2: false,
+      deleteDialog: false,
       dialog3: false,
     }
+  },
+  computed: {
+    selected() {
+      return this.$store.state.selected
+    },
+  },
+  methods: {
+    deleteContacts() {
+      this.$store.commit('deleteSelected', this.selected)
+      this.deleteDialog = false
+    },
   },
 }
 </script>

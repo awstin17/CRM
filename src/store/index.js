@@ -13,8 +13,14 @@ export default new Vuex.Store({
     getContacts(state, data) {
       state.contacts = data
     },
-    updateSelected(state, data) {
-      state.selected = data
+    updateSelected(state, selected) {
+      state.selected = selected
+    },
+    deleteSelected(state, selected) {
+      selected.forEach((contact) => {
+        const index = state.contacts.indexOf(contact)
+        state.contacts.splice(index, 1)
+      })
     },
   },
   actions: {
