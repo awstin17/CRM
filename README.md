@@ -1,5 +1,7 @@
 # crm
 
+To view project, clone, run npm install, then npm run serve
+
 ## Project setup
 ```
 npm install
