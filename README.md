@@ -2,6 +2,8 @@
 
 To view project, clone, run npm install, then npm run serve
 
+Made primarily with Vuetify
+
 ## Project setup
 ```
 npm install
