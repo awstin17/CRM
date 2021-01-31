@@ -102,7 +102,7 @@
       </div>
       <div class="contact-table-actions__button-container-right">
         <v-dialog
-          v-model="dialog3"
+          v-model="addDialog"
           width="500"
         >
           <template v-slot:activator="{ on, attrs }">
@@ -119,9 +119,27 @@
               Add Contact
             </v-card-title>
 
-            <v-card-text>
-              Are you sure you want to delete this record?
-            </v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="fullName"
+                    label="Full Name*"
+                    required
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="email"
+                    label="Email*"
+                    required
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="address"
+                    label="Address*"
+                    required
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
 
             <v-divider></v-divider>
 
@@ -130,16 +148,17 @@
               <v-btn
                 color="primary"
                 text
-                @click="dialog3 = false"
+                @click="addDialog = false"
               >
                 Cancel
               </v-btn>
               <v-btn
                 color="primary"
                 text
-                @click="dialog3 = false"
+                @click="addContact"
+                :disabled="!fullName || !email || !address"
               >
-                Yes, Delete
+                Add
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -156,7 +175,10 @@ export default {
     return {
       dialog: false,
       deleteDialog: false,
-      dialog3: false,
+      addDialog: false,
+      fullName: '',
+      email: '',
+      address: '',
     }
   },
   computed: {
@@ -168,6 +190,21 @@ export default {
     deleteContacts() {
       this.$store.commit('deleteSelected', this.selected)
       this.deleteDialog = false
+    },
+    addContact() {
+      const newContact = {
+        name: this.fullName,
+        email: this.email,
+        address: this.address,
+      }
+      this.$store.commit('addContact', newContact)
+      this.addDialog = false
+      this.clearAddForm()
+    },
+    clearAddForm() {
+      this.fullName = ''
+      this.email = ''
+      this.address = ''
     },
   },
 }

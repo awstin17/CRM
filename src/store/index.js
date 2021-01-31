@@ -22,6 +22,10 @@ export default new Vuex.Store({
         state.contacts.splice(index, 1)
       })
     },
+    addContact(state, newContact) {
+      state.contacts.push(newContact)
+      console.log(state, newContact)
+    },
   },
   actions: {
     // mocking initial GET request for data
