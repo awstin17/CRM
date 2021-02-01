@@ -4,6 +4,8 @@ To view project, clone, run npm install, then npm run serve
 
 Made primarily with Vuetify
 
+NOTE: Only the top buttons (Edit, Delete, Add) work
+
 ## Project setup
 ```
 npm install
