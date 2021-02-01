@@ -18,7 +18,7 @@ import DeleteButton from './delete-button/index.vue'
 import AddButton from './add-button/index.vue'
 
 export default {
-  name: 'Contact Actions',
+  name: 'ContactActions',
   components: {
     EditButton,
     DeleteButton,

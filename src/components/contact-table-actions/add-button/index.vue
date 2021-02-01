@@ -65,7 +65,7 @@
 
 <script>
 export default {
-  name: 'Add Button',
+  name: 'AddButton',
   data() {
     return {
       dialogOpen: false,

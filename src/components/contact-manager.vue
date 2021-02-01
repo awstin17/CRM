@@ -15,7 +15,7 @@ import ContactActions from '@/components/contact-table-actions/index.vue'
 import ContactTable from '@/components/contact-table/index.vue'
 
 export default {
-  name: 'Home Main',
+  name: 'ContactManager',
   components: {
     ContactActions,
     ContactTable,

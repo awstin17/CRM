@@ -52,7 +52,7 @@
 
 <script>
 export default {
-  name: 'Delete Button',
+  name: 'DeleteButton',
   data() {
     return {
       dialogOpen: false,

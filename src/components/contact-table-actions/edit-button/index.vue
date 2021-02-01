@@ -69,7 +69,7 @@
 
 <script>
 export default {
-  name: 'Contact Actions',
+  name: 'EditButton',
   data() {
     return {
       dialogOpen: false,

@@ -20,6 +20,19 @@
         prepend-icon="mdi-magnify"
       ></v-text-field>
     </template>
+    <template v-slot:item.actions>
+      <v-icon
+        small
+        class="mr-2"
+      >
+        mdi-pencil
+      </v-icon>
+      <v-icon
+        small
+      >
+        mdi-delete
+      </v-icon>
+    </template>
   </v-data-table>
 </template>
 
@@ -39,6 +52,7 @@ export default {
         },
         { text: 'Email', value: 'email' },
         { text: 'Address', value: 'address' },
+        { text: 'Actions', value: 'actions', sortable: false },
       ],
     }
   },

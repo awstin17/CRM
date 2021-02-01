@@ -48,7 +48,8 @@
       "semi": [
         "error",
         "never"
-      ]
+      ],
+      "vue/valid-v-slot": "off"
     }
   },
   "browserslist": [
